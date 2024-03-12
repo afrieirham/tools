@@ -69,6 +69,11 @@ function TaskSorter() {
 
   return (
     <div className="flex flex-col items-center w-full max-w-sm p-8 mx-auto">
+      <div className="self-start">
+        <a href="/" className="hover:underline">
+          ← back to main page
+        </a>
+      </div>
       <form
         onSubmit={onAddTask}
         className="flex flex-col items-center w-full mt-6 space-y-2"
