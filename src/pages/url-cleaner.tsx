@@ -29,11 +29,20 @@ function UrlCleaner() {
           onChange={(e) => setInput(e.target.value)}
           className="min-h-40 flex w-full h-10 max-w-sm px-3 py-2 mx-auto text-sm border rounded-md border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         />
-        <button className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300">
+        <button
+          type="submit"
+          className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300"
+        >
           clean
         </button>
+        <button
+          type="button"
+          onClick={() => setInput("")}
+          className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300"
+        >
+          clear
+        </button>
       </form>
-      <div></div>
     </div>
   );
 }
