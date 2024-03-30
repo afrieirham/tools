@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 function UrlCleaner() {
   const [input, setInput] = useState("");
+  const [copyText, setCopyText] = useState("copy");
 
   const onCleanUrl = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
 
     try {
       const url = new URL(input);
@@ -53,10 +53,16 @@ function UrlCleaner() {
         </div>
         <button
           type="button"
-          onClick={() => navigator.clipboard.writeText(input)}
+          onClick={() => {
+            navigator.clipboard.writeText(input);
+            setCopyText("copied!");
+            setTimeout(() => {
+              setCopyText("copy");
+            }, 1000);
+          }}
           className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300"
         >
-          copy
+          {copyText}
         </button>
         <br />
         <button
