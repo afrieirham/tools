@@ -3,22 +3,17 @@ import React, { useState } from "react";
 function UrlCleaner() {
   const [input, setInput] = useState("");
 
-  function isValidURL(url: string) {
-    const urlPattern = /^(https?ftp):\/\/[^\s/$.?#].[^\s]*$/i;
-    return urlPattern.test(url);
-  }
-
   const onCleanUrl = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(e);
 
-    if (!isValidURL(input)) {
+    try {
+      const url = new URL(input);
+      const cleanUrl = url.protocol + "//" + url.hostname + url.pathname;
+      setInput(cleanUrl);
+    } catch (err) {
       alert("Not valid url");
-      return;
     }
-
-    const url = new URL(input);
-    const cleanUrl = url.protocol + "//" + url.hostname + url.pathname;
-    setInput(cleanUrl);
   };
 
   return (
