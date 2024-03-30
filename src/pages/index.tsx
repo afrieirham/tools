@@ -18,6 +18,9 @@ export default function Home() {
           <li className="list-disc list-inside hover:underline">
             <Link href="/url-cleaner">url cleaner ↗</Link>
           </li>
+          <li className="list-disc list-inside hover:underline">
+            <Link href="/can-i-embed">can i embed? ↗</Link>
+          </li>
         </ul>
       </div>
     </main>
