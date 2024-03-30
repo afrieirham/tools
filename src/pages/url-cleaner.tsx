@@ -3,8 +3,19 @@ import React, { useState } from "react";
 function UrlCleaner() {
   const [input, setInput] = useState("");
 
+  function isValidURL(url: string) {
+    const urlPattern = /^(https?ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    return urlPattern.test(url);
+  }
+
   const onCleanUrl = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!isValidURL(input)) {
+      alert("Not valid url");
+      return;
+    }
+
     const url = new URL(input);
     const cleanUrl = url.protocol + "//" + url.hostname + url.pathname;
     setInput(cleanUrl);
@@ -29,20 +40,22 @@ function UrlCleaner() {
           onChange={(e) => setInput(e.target.value)}
           className="min-h-40 flex w-full h-10 max-w-sm px-3 py-2 mx-auto text-sm border rounded-md border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         />
-        <button
-          type="button"
-          onClick={() => setInput("")}
-          className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300"
-        >
-          clear
-        </button>
-        <button
-          type="button"
-          onClick={async () => setInput(await navigator.clipboard.readText())}
-          className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300"
-        >
-          paste
-        </button>
+        <div className="flex space-x-2 w-full">
+          <button
+            type="button"
+            onClick={async () => setInput(await navigator.clipboard.readText())}
+            className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300"
+          >
+            paste
+          </button>
+          <button
+            type="button"
+            onClick={() => setInput("")}
+            className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300"
+          >
+            clear
+          </button>
+        </div>
         <button
           type="button"
           onClick={() => navigator.clipboard.writeText(input)}
@@ -50,7 +63,7 @@ function UrlCleaner() {
         >
           copy
         </button>
-
+        <br />
         <button
           type="submit"
           className="w-full max-w-sm py-2 text-sm text-white bg-gray-950 rounded-lg hover:bg-gray-800"
