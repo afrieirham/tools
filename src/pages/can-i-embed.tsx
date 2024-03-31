@@ -25,7 +25,7 @@ function CanEmbed() {
       </div>
       <form
         onSubmit={onSubmit}
-        className="flex flex-col items-center w-full mt-6 space-y-2 max-w-sm mx-auto mb-16"
+        className="flex flex-col items-center w-full max-w-sm mx-auto mt-6 mb-16 space-y-2"
       >
         <h1 className="text-center">can i embed this?</h1>
         <input
@@ -42,7 +42,7 @@ function CanEmbed() {
           check
         </button>
       </form>
-      {url && <iframe src={url} className="min-h-screen w-full border" />}
+      {url && <iframe src={url} className="w-full min-h-screen border" />}
     </div>
   );
 }

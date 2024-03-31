@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex flex-col w-full max-w-screen-sm p-6 mx-auto">
+    <main className="flex flex-col w-full p-6 mx-auto max-w-screen-sm">
       <h1 className="text-xl font-bold">
         tools by{" "}
         <a className="hover:underline" href="https://afrieirham.com">

@@ -124,7 +124,7 @@ function TaskSorter() {
           ) : (
             <p className="mt-8">added tasks</p>
           )}
-          <div className="w-full p-4 mt-2 space-y-4 border rounded-lg">
+          <div className="w-full p-4 mt-2 border rounded-lg space-y-4">
             <ol className="w-full pl-6">
               {tasks.map((task) => (
                 <li key={task.id} className="text-sm list-decimal">
@@ -165,7 +165,7 @@ function TaskSorter() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" />
+              <div className="fixed inset-0 bg-gray-500 transition-opacity bg-opacity-75" />
             </Transition.Child>
 
             <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -179,12 +179,12 @@ function TaskSorter() {
                   leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                  <Dialog.Panel className="relative px-4 py-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+                  <Dialog.Panel className="relative px-4 py-4 overflow-hidden text-left bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                     <div>
                       <div className="text-center">
                         <Dialog.Title
                           as="h3"
-                          className="text-base font-semibold leading-6 text-gray-900"
+                          className="text-base font-semibold text-gray-900 leading-6"
                         >
                           Which on is more important?
                         </Dialog.Title>
