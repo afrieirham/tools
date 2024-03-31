@@ -122,12 +122,12 @@ function UrlCleaner() {
               <input
                 readOnly
                 value={key}
-                className="text-[12px] flex-1 rounded border py-1 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="text-[12px] w-full rounded border py-1 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               />
               <input
                 readOnly
                 value={value}
-                className="text-[12px] flex-1 rounded border py-1 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="text-[12px] w-full rounded border py-1 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               />
             </div>
           ))}
