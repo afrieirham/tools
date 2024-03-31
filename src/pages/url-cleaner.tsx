@@ -12,6 +12,7 @@ type Param = {
 function UrlCleaner() {
   const [baseUrl, setBaseUrl] = useState("");
   const [input, setInput] = useState("");
+  const [selectAll, setSelectAll] = useState(true);
   const [params, setParams] = useState<Param[]>([]);
 
   const [copyText, setCopyText] = useState("copy");
@@ -36,8 +37,11 @@ function UrlCleaner() {
     setParams(newParams);
     // end toggle checkbox
 
-    // start update textarea
-    const shownParams = newParams.filter(({ show }) => show);
+    updateTextarea(newParams);
+  };
+
+  const updateTextarea = (params: Param[]) => {
+    const shownParams = params.filter(({ show }) => show);
     if (shownParams.length === 0) {
       setInput(baseUrl);
       return;
@@ -48,7 +52,6 @@ function UrlCleaner() {
       .join("&");
 
     setInput(`${baseUrl}/?${stringParams}`);
-    // end update textarea
   };
 
   const updateSearchParamsArray = (value: string) => {
@@ -86,6 +89,7 @@ function UrlCleaner() {
   const onReset = () => {
     setInput("");
     setBaseUrl("");
+    setSelectAll(true);
     setParams([]);
   };
 
@@ -134,6 +138,7 @@ function UrlCleaner() {
             type="button"
             onClick={async () => {
               const clipboard = await navigator.clipboard.readText();
+              onReset();
               setInput(clipboard);
               updateSearchParamsArray(clipboard);
             }}
@@ -149,6 +154,23 @@ function UrlCleaner() {
             reset
           </button>
         </div>
+        {params.length > 0 && (
+          <button
+            type="button"
+            onClick={() => {
+              setSelectAll(!selectAll);
+              const newParams = params.map((p) => ({
+                ...p,
+                show: !selectAll,
+              }));
+              setParams(newParams);
+              updateTextarea(newParams);
+            }}
+            className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300"
+          >
+            {selectAll ? "unselect all" : "select all"}
+          </button>
+        )}
         <button
           type="button"
           onClick={() => {
