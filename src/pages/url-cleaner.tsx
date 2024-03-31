@@ -45,7 +45,7 @@ function UrlCleaner() {
     setParams(paramsArray);
   };
 
-  const onChangeShow = (id: string) => {
+  const onToggleShow = (id: string) => {
     // toggle checkbox
     const newParams = params.map((p) => {
       if (p.id === id) {
@@ -95,7 +95,7 @@ function UrlCleaner() {
               <input
                 type="checkbox"
                 checked={show}
-                onChange={() => onChangeShow(id)}
+                onChange={() => onToggleShow(id)}
                 className="w-4 h-4 mr-2 text-gray-600 border-gray-300 rounded focus:ring-gray-600"
               />
               <input
