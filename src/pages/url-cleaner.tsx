@@ -81,7 +81,7 @@ function UrlCleaner() {
           show: true,
         };
       });
-    setBaseUrl(url.origin);
+    setBaseUrl(url.origin + url.pathname);
     setParams(paramsArray);
     // end convert string search params to array
   };
