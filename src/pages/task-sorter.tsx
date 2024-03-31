@@ -84,7 +84,7 @@ function TaskSorter() {
           placeholder="add a task"
           required
           onChange={(e) => setInput(e.target.value)}
-          className="flex w-full h-10 max-w-sm px-3 py-2 mx-auto text-sm border rounded-md border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex w-full h-10 max-w-sm px-3 py-2 mx-auto text-sm border border-gray-300 rounded-md border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         />
         <button className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300">
           add
@@ -124,7 +124,7 @@ function TaskSorter() {
           ) : (
             <p className="mt-8">added tasks</p>
           )}
-          <div className="w-full p-4 mt-2 border rounded-lg space-y-4">
+          <div className="w-full p-4 mt-2 space-y-4 border rounded-lg">
             <ol className="w-full pl-6">
               {tasks.map((task) => (
                 <li key={task.id} className="text-sm list-decimal">
@@ -165,7 +165,7 @@ function TaskSorter() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-gray-500 transition-opacity bg-opacity-75" />
+              <div className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" />
             </Transition.Child>
 
             <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -179,12 +179,12 @@ function TaskSorter() {
                   leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                  <Dialog.Panel className="relative px-4 py-4 overflow-hidden text-left bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+                  <Dialog.Panel className="relative px-4 py-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                     <div>
                       <div className="text-center">
                         <Dialog.Title
                           as="h3"
-                          className="text-base font-semibold text-gray-900 leading-6"
+                          className="text-base font-semibold leading-6 text-gray-900"
                         >
                           Which on is more important?
                         </Dialog.Title>
