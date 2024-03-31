@@ -17,17 +17,54 @@ function UrlCleaner() {
   const [copyText, setCopyText] = useState("copy");
 
   const onInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    // set input value
     const value = e.target.value;
     setInput(value);
+    updateSearchParamsArray(value);
+  };
 
+  const onToggleShow = (id: string) => {
+    // start toggle checkbox
+    const newParams = params.map((p) => {
+      if (p.id === id) {
+        return {
+          ...p,
+          show: !p.show,
+        };
+      }
+      return p;
+    });
+    setParams(newParams);
+    // end toggle checkbox
+
+    // start update textarea
+    const shownParams = newParams.filter(({ show }) => show);
+    if (shownParams.length === 0) {
+      setInput(baseUrl);
+      return;
+    }
+
+    const stringParams = shownParams
+      .map(({ key, value }) => `${key}=${value}`)
+      .join("&");
+
+    setInput(`${baseUrl}/?${stringParams}`);
+    // end update textarea
+  };
+
+  const updateSearchParamsArray = (value: string) => {
+    // reset if input is empty
+    if (!value) {
+      onReset();
+      return;
+    }
+
+    // do nothing if not valid url
     if (!isValidUrl(value)) {
       return;
     }
 
+    // start convert string search params to array
     const url = new URL(value);
-
-    // convert searchParams to paramsArray
     const paramsArray = url.search
       .replace("?", "")
       .split("&")
@@ -40,36 +77,15 @@ function UrlCleaner() {
           show: true,
         };
       });
-
     setBaseUrl(url.origin);
     setParams(paramsArray);
+    // end convert string search params to array
   };
 
-  const onToggleShow = (id: string) => {
-    // toggle checkbox
-    const newParams = params.map((p) => {
-      if (p.id === id) {
-        return {
-          ...p,
-          show: !p.show,
-        };
-      }
-      return p;
-    });
-    setParams(newParams);
-
-    // update textarea
-    const shownParams = newParams.filter(({ show }) => show);
-    if (shownParams.length === 0) {
-      setInput(baseUrl);
-      return;
-    }
-
-    const stringParams = shownParams
-      .map(({ key, value }) => `${key}=${value}`)
-      .join("&");
-
-    setInput(`${baseUrl}/?${stringParams}`);
+  const onReset = () => {
+    setInput("");
+    setBaseUrl("");
+    setParams([]);
   };
 
   return (
@@ -115,18 +131,18 @@ function UrlCleaner() {
         <div className="flex w-full space-x-2">
           <button
             type="button"
-            onClick={async () => setInput(await navigator.clipboard.readText())}
+            onClick={async () => {
+              const clipboard = await navigator.clipboard.readText();
+              setInput(clipboard);
+              updateSearchParamsArray(clipboard);
+            }}
             className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300"
           >
             paste
           </button>
           <button
             type="button"
-            onClick={() => {
-              setInput("");
-              setBaseUrl("");
-              setParams([]);
-            }}
+            onClick={onReset}
             className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300"
           >
             reset
