@@ -68,7 +68,7 @@ function TaskSorter() {
   const taskB = hasTwoTasks ? tasks[comparisonMatrix[index][1]] : null;
 
   return (
-    <div className="flex flex-col items-center w-full max-w-sm p-8 mx-auto">
+    <div className="flex flex-col items-center w-full p-8 ">
       <div className="self-start">
         <a href="/" className="hover:underline">
           ← back to main page
@@ -76,7 +76,7 @@ function TaskSorter() {
       </div>
       <form
         onSubmit={onAddTask}
-        className="flex flex-col items-center w-full mt-6 space-y-2"
+        className="flex flex-col items-center w-full max-w-sm mx-auto mt-6 space-y-2"
       >
         <h1 className="text-center">task sorter</h1>
         <input
@@ -124,7 +124,7 @@ function TaskSorter() {
           ) : (
             <p className="mt-8">added tasks</p>
           )}
-          <div className="w-full p-4 mt-2 space-y-4 border rounded-lg">
+          <div className="w-full max-w-sm p-4 mx-auto mt-2 space-y-4 border rounded-lg">
             <ol className="w-full pl-6">
               {tasks.map((task) => (
                 <li key={task.id} className="text-sm list-decimal">
@@ -219,7 +219,7 @@ function TaskSorter() {
           </Dialog>
         </Transition.Root>
       )}
-      <div className="mt-16">
+      <div className="max-w-sm mx-auto mt-16">
         <p className="text-sm text-center">why use this?</p>
         <video className="aspect-[9/16] w-full mt-2" controls>
           <source src="/explanation.mp4" type="video/mp4" />
