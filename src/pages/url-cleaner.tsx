@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { isValidUrl } from "@/utils";
+
 function UrlCleaner() {
   const [input, setInput] = useState("");
   const [copyText, setCopyText] = useState("copy");
@@ -7,13 +9,14 @@ function UrlCleaner() {
   const onCleanUrl = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      const url = new URL(input);
-      const cleanUrl = url.protocol + "//" + url.hostname + url.pathname;
-      setInput(cleanUrl);
-    } catch (err) {
+    if (!isValidUrl(input)) {
       alert("Not valid url");
+      return;
     }
+
+    const url = new URL(input);
+    const cleanUrl = url.protocol + "//" + url.hostname + url.pathname;
+    setInput(cleanUrl);
   };
 
   return (

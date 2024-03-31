@@ -1,22 +1,16 @@
 import React, { useState } from "react";
 
+import { isValidUrl } from "@/utils";
+
 function CanEmbed() {
   const [input, setInput] = useState("");
   const [url, setUrl] = useState("");
-
-  const isValidUrl = (url: string) => {
-    try {
-      new URL(url);
-      return true;
-    } catch (error) {
-      return false;
-    }
-  };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isValidUrl(input)) {
       alert("Not valid url");
+      return;
     }
 
     setUrl(input);
