@@ -68,6 +68,7 @@ function UrlCleaner() {
     const paramsArray = url.search
       .replace("?", "")
       .split("&")
+      .filter(Boolean)
       .map((str) => {
         const [key, value] = str.split("=");
         return {
