@@ -33,7 +33,8 @@ function SEOHead({
       <meta property="og:image" content={\`https://<domain_placeholder>$\{ogPath}\`} />
 
       {/* Twitter Meta Tags */}
-      <meta name="twitter:creator" content="<twitter_placeholder>" />
+      <meta name="twitter:creator" content="<twitter_creator_placeholder>" />
+      <meta name="twitter:site" content="<twitter_site_placeholder>" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:domain" content="<domain_placeholder>" />
       <meta property="twitter:url" content={\`https://<domain_placeholder>$\{path}\`} />
@@ -41,7 +42,7 @@ function SEOHead({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={\`https://<domain_placeholder>$\{ogPath}\`} />
 
-      {/* Meta Tags Generated via ${window.location} */}
+      {/* Meta Tags Generated via https://tools.afrieirham.com/seohead-generator */}
     </Head>
   );
 }
@@ -55,8 +56,9 @@ export default SEOHead;`;
   ogPath="/og.png"
 />`;
 
-  const [domain, setDomain] = useState("afrieirham.com");
-  const [twitter, setTwitter] = useState("@afrieirham_");
+  const [domain, setDomain] = useState("typit.in");
+  const [twitterAuthor, setTwitterAuthor] = useState("@afrieirham_");
+  const [twitterSite, setTwitterSite] = useState("@typit.in");
 
   return (
     <div className="flex flex-col items-center w-full p-4 space-y-8 sm:p-8">
@@ -73,18 +75,41 @@ export default SEOHead;`;
           </code>{" "}
           Generator
         </h1>
-        <input
-          placeholder="domain name"
-          value={domain}
-          onChange={(e) => setDomain(e.target.value)}
-          className="text-[12px] w-full rounded border border-gray-300 py-1 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-        />
-        <input
-          placeholder="twitter username"
-          value={twitter}
-          onChange={(e) => setTwitter(e.target.value)}
-          className="text-[12px] w-full rounded border border-gray-300 py-1 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-        />
+        <div>
+          <label htmlFor="domain" className="text-sm">
+            domain name (no http)
+          </label>
+          <input
+            name="domain"
+            placeholder="typit.in"
+            value={domain}
+            onChange={(e) => setDomain(e.target.value)}
+            className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          />
+        </div>
+        <div>
+          <label htmlFor="twitter-author" className="text-sm">
+            author's twitter username
+          </label>
+          <input
+            name="twitter-author"
+            placeholder="@afrieirham_"
+            value={twitterAuthor}
+            onChange={(e) => setTwitterAuthor(e.target.value)}
+            className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          />
+        </div>
+        <div>
+          <label htmlFor="domain" className="text-sm">
+            site's twitter username
+          </label>
+          <input
+            placeholder="@typit.in"
+            value={twitterSite}
+            onChange={(e) => setTwitterSite(e.target.value)}
+            className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          />
+        </div>
       </div>
 
       <div className="w-full max-w-screen-lg mx-auto space-y-2 ">
@@ -93,9 +118,13 @@ export default SEOHead;`;
         </div>
 
         <CodeBlock>
-          {initialCode
-            .replaceAll("<domain_placeholder>", domain)
-            .replaceAll("<twitter_placeholder>", twitter)}
+          {
+            initialCode
+              .replaceAll("<domain_placeholder>", domain)
+              .replaceAll("<twitter_creator_placeholder>", twitterAuthor)
+              .replaceAll("<twitter_site_placeholder>", twitterSite)
+            //
+          }
         </CodeBlock>
       </div>
 
