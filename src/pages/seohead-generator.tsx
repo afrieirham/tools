@@ -1,6 +1,10 @@
 import { useState } from "react";
 
 function SeoHeadGenerator() {
+  const [domain, setDomain] = useState("typit.in");
+  const [twitterAuthor, setTwitterAuthor] = useState("@afrieirham_");
+  const [twitterSite, setTwitterSite] = useState("@typit.in");
+
   const initialCode = `import Head from "next/head";
   
 function SEOHead({
@@ -33,8 +37,16 @@ function SEOHead({
       <meta property="og:image" content={\`https://<domain_placeholder>$\{ogPath}\`} />
 
       {/* Twitter Meta Tags */}
-      <meta name="twitter:creator" content="<twitter_creator_placeholder>" />
-      <meta name="twitter:site" content="<twitter_site_placeholder>" />
+      ${
+        twitterAuthor
+          ? '<meta name="twitter:creator" content="<twitter_creator_placeholder>" />'
+          : ""
+      }
+      ${
+        twitterSite
+          ? '<meta name="twitter:site" content="<twitter_site_placeholder>" />'
+          : ""
+      }
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:domain" content="<domain_placeholder>" />
       <meta property="twitter:url" content={\`https://<domain_placeholder>$\{path}\`} />
@@ -55,10 +67,6 @@ export default SEOHead;`;
   path="/"
   ogPath="/og.png"
 />`;
-
-  const [domain, setDomain] = useState("typit.in");
-  const [twitterAuthor, setTwitterAuthor] = useState("@afrieirham_");
-  const [twitterSite, setTwitterSite] = useState("@typit.in");
 
   return (
     <div className="flex flex-col items-center w-full p-4 space-y-8 sm:p-8">
