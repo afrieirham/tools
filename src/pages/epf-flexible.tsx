@@ -247,12 +247,12 @@ function Table({
             <p>Account 1</p>
             {diffAccount1 > 0 && (
               <b className="text-green-500">
-                {ringgit.format(nextAccount1)} (+{diffAccount1})
+                {ringgit.format(nextAccount1)} (+{ringgit.format(diffAccount1)})
               </b>
             )}
             {diffAccount1 < 0 && (
               <b className="text-red-500">
-                {ringgit.format(nextAccount1)} ({diffAccount1})
+                {ringgit.format(nextAccount1)} ({ringgit.format(diffAccount1)})
               </b>
             )}
             {diffAccount1 === 0 && (
@@ -263,12 +263,12 @@ function Table({
             <p>Account 2</p>
             {diffAccount2 > 0 && (
               <b className="text-green-500">
-                {ringgit.format(nextAccount2)} (+{diffAccount2})
+                {ringgit.format(nextAccount2)} (+{ringgit.format(diffAccount2)})
               </b>
             )}
             {diffAccount2 < 0 && (
               <b className="text-red-500">
-                {ringgit.format(nextAccount2)} ({diffAccount2})
+                {ringgit.format(nextAccount2)} ({ringgit.format(diffAccount2)})
               </b>
             )}
             {diffAccount2 === 0 && (
@@ -278,7 +278,7 @@ function Table({
           <div>
             <p>Account 3</p>
             <b className={`text-green-500`}>
-              {ringgit.format(nextAccount3)} (+{nextAccount3})
+              {ringgit.format(nextAccount3)} (+{ringgit.format(nextAccount3)})
             </b>
           </div>
           <div>
