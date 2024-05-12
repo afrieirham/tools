@@ -214,6 +214,9 @@ function Table({
   nextAccount2: number;
   nextAccount3: number;
 }) {
+  const diffAccount1 = nextAccount1 - currentAccount1;
+  const diffAccount2 = nextAccount2 - currentAccount2;
+
   return (
     <>
       <div className="flex flex-col w-full max-w-sm mx-auto space-y-2">
@@ -244,21 +247,45 @@ function Table({
         <div className="space-y-3">
           <div>
             <p>Account 1</p>
-            <p className="font-bold">{ringgit.format(nextAccount1)}</p>
+            {diffAccount1 > 0 && (
+              <b className="text-green-500">
+                {ringgit.format(nextAccount1)} (+{diffAccount1})
+              </b>
+            )}
+            {diffAccount1 < 0 && (
+              <b className="text-red-500">
+                {ringgit.format(nextAccount1)} ({diffAccount1})
+              </b>
+            )}
+            {diffAccount1 === 0 && (
+              <b className="">{ringgit.format(nextAccount1)}</b>
+            )}
           </div>
           <div>
             <p>Account 2</p>
-            <p className="font-bold">{ringgit.format(nextAccount2)}</p>
+            {diffAccount2 > 0 && (
+              <b className="text-green-500">
+                {ringgit.format(nextAccount2)} (+{diffAccount2})
+              </b>
+            )}
+            {diffAccount2 < 0 && (
+              <b className="text-red-500">
+                {ringgit.format(nextAccount2)} ({diffAccount2})
+              </b>
+            )}
+            {diffAccount2 === 0 && (
+              <b className="">{ringgit.format(nextAccount2)}</b>
+            )}
           </div>
           <div>
             <p>Account 3</p>
-            <p className="font-bold">{ringgit.format(nextAccount3)}</p>
+            <b className={`text-green-500`}>
+              {ringgit.format(nextAccount3)} (+{nextAccount3})
+            </b>
           </div>
           <div>
             <p>TOTAL</p>
-            <p className="font-bold">
-              {ringgit.format(nextAccount1 + nextAccount2 + nextAccount3)}
-            </p>
+            <b>{ringgit.format(nextAccount1 + nextAccount2 + nextAccount3)}</b>
           </div>
         </div>
       </div>
