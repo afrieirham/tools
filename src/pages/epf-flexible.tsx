@@ -82,6 +82,9 @@ function EPFFlexible() {
         <button className="w-full max-w-sm py-2 text-sm bg-gray-200 rounded-lg hover:bg-gray-300">
           check
         </button>
+        <p className="text-xs text-gray-500">
+          Note that the numbers calculated might not be accurate.
+        </p>
       </form>
       {hasAmount && (
         <div className="flex flex-col items-center w-full max-w-sm mx-auto">
