@@ -38,7 +38,6 @@ function EPFFlexible() {
       >
         <h1 className="">EPF Flexible Calculator</h1>
         <input
-          type="number"
           value={input1}
           placeholder="enter your account 1 balance"
           required
@@ -50,7 +49,6 @@ function EPFFlexible() {
           className="flex w-full h-10 max-w-sm px-3 py-2 mx-auto text-sm border border-gray-300 rounded-md border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         />
         <input
-          type="number"
           value={input2}
           placeholder="enter your account 2 balance"
           required
