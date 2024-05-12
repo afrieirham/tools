@@ -67,7 +67,7 @@ function EPFFlexible() {
         }}
         className="flex flex-col items-center w-full max-w-sm mx-auto space-y-2"
       >
-        <h1 className="text-center">EPF Flexible Calculator</h1>
+        <h1 className="">EPF Flexible Calculator</h1>
         <input
           type="number"
           value={input}
@@ -87,7 +87,7 @@ function EPFFlexible() {
         </p>
       </form>
       {hasAmount && (
-        <div className="flex flex-col items-center w-full max-w-sm mx-auto">
+        <div className="flex flex-col w-full max-w-sm mx-auto">
           <p>
             Your Account 2 balance is <b>{ringgit.format(currentAccount2)}</b>
           </p>
@@ -98,7 +98,7 @@ function EPFFlexible() {
         </div>
       )}
       {hasAmount && getEpfCase() === 1 && (
-        <div className="flex flex-col items-center w-full max-w-sm mx-auto text-center">
+        <div className="flex flex-col w-full max-w-sm mx-auto">
           <p>Your Account 2 (30%) will be split as below:</p>
           <p>5% will go to Account 1</p>
           <p>15% will stay in Account 2</p>
@@ -106,22 +106,22 @@ function EPFFlexible() {
         </div>
       )}
       {hasAmount && getEpfCase() === 2 && (
-        <div className="flex flex-col items-center w-full max-w-sm mx-auto text-center">
+        <div className="flex flex-col w-full max-w-sm mx-auto">
           <p>RM1,000 will be transfered to Account 3</p>
           <p>The remaining will stay in Account 2</p>
           <p>No transfer will be made to Account 1</p>
         </div>
       )}
       {hasAmount && getEpfCase() === 3 && (
-        <div className="flex flex-col items-center w-full max-w-sm mx-auto text-center">
+        <div className="flex flex-col w-full max-w-sm mx-auto">
           <p>All of your Account 2 balance will go to Account 3</p>
         </div>
       )}
 
       {hasAmount && (
-        <div className="flex flex-col items-center w-full max-w-sm mx-auto space-y-2">
+        <div className="flex flex-col w-full max-w-sm mx-auto space-y-2">
           <p>Current Allocation</p>
-          <div className="text-sm text-center space-y-3">
+          <div className="text-sm space-y-3">
             <div>
               <p>Account 1</p>
               <p className="font-bold">{ringgit.format(currentAccount1)}</p>
@@ -138,9 +138,9 @@ function EPFFlexible() {
         </div>
       )}
       {hasAmount && (
-        <div className="flex flex-col items-center w-full max-w-sm mx-auto space-y-2">
+        <div className="flex flex-col w-full max-w-sm mx-auto space-y-2">
           <p>Transferred Allocation</p>
-          <div className="text-sm text-center space-y-3">
+          <div className="text-sm space-y-3">
             <div>
               <p>Account 1</p>
               <p className="font-bold">{ringgit.format(nextAccount1)}</p>
