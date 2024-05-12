@@ -40,7 +40,7 @@ function EPFFlexible() {
         <input
           type="number"
           value={input1}
-          placeholder="enter your account 1 balanace"
+          placeholder="enter your account 1 balance"
           required
           onChange={(e) => {
             setInput1(e.target.value);
@@ -52,7 +52,7 @@ function EPFFlexible() {
         <input
           type="number"
           value={input2}
-          placeholder="enter your account 2 balanace"
+          placeholder="enter your account 2 balance"
           required
           onChange={(e) => {
             setInput2(e.target.value);
