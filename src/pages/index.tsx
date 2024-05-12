@@ -29,6 +29,9 @@ export default function Home() {
               generator ↗
             </Link>
           </li>
+          <li className="list-disc list-inside hover:underline">
+            <Link href="/epf-flexible">epf flexible ↗</Link>
+          </li>
         </ul>
       </div>
     </main>
