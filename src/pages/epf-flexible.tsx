@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 
 function EPFFlexible() {
-  const [input, setInput] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [input1, setInput1] = useState("");
+  const [input2, setInput2] = useState("");
 
-  const hasAmount = amount > 0;
+  const [amount1, setAmount1] = useState(0);
+  const [amount2, setAmount2] = useState(0);
 
-  const currentAccount1 = (amount * 70) / 100;
-  const currentAccount2 = (amount * 30) / 100;
+  const hasAmount = amount1 > 0 && amount2 > 0;
 
+  const currentAccount1 = amount1;
+  const currentAccount2 = amount2;
   const case1 = currentAccount2 >= 3000;
   const case2 = currentAccount2 > 1000;
   const case3 = currentAccount2 <= 1000;
@@ -25,7 +27,7 @@ function EPFFlexible() {
 
   const getNextAccount2 = () => {
     if (case1) {
-      return (amount * 15) / 100;
+      return amount2 / 2;
     } else if (case2) {
       return currentAccount2 - 1000;
     } else {
@@ -33,12 +35,14 @@ function EPFFlexible() {
     }
   };
 
-  const nextAccount1 = case1 ? (amount * 75) / 100 : currentAccount1;
+  const nextAccount1 = case1
+    ? currentAccount1 + (5 / 30) * amount2
+    : currentAccount1;
   const nextAccount2 = getNextAccount2();
 
   const getNextAccount3 = () => {
     if (case1) {
-      return (amount * 10) / 100;
+      return (amount2 * 10) / 30;
     } else if (case2) {
       return 1000;
     } else {
@@ -63,19 +67,33 @@ function EPFFlexible() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setAmount(Number(input));
+          setAmount1(Number(input1));
+          setAmount2(Number(input2));
         }}
         className="flex flex-col items-center w-full max-w-sm mx-auto space-y-2"
       >
         <h1 className="">EPF Flexible Calculator</h1>
         <input
           type="number"
-          value={input}
-          placeholder="enter total EPF amount"
+          value={input1}
+          placeholder="enter your account 1 balanace"
           required
           onChange={(e) => {
-            setInput(e.target.value);
-            setAmount(0);
+            setInput1(e.target.value);
+            setAmount1(0);
+            setAmount2(0);
+          }}
+          className="flex w-full h-10 max-w-sm px-3 py-2 mx-auto text-sm border border-gray-300 rounded-md border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        />
+        <input
+          type="number"
+          value={input2}
+          placeholder="enter your account 2 balanace"
+          required
+          onChange={(e) => {
+            setInput2(e.target.value);
+            setAmount1(0);
+            setAmount2(0);
           }}
           className="flex w-full h-10 max-w-sm px-3 py-2 mx-auto text-sm border border-gray-300 rounded-md border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         />
@@ -134,6 +152,12 @@ function EPFFlexible() {
               <p>Account 3</p>
               <p className="font-bold">{ringgit.format(0)}</p>
             </div>
+            <div>
+              <p>TOTAL</p>
+              <p className="font-bold">
+                {ringgit.format(currentAccount1 + currentAccount2)}
+              </p>
+            </div>
           </div>
         </div>
       )}
@@ -152,6 +176,12 @@ function EPFFlexible() {
             <div>
               <p>Account 3</p>
               <p className="font-bold">{ringgit.format(nextAccount3)}</p>
+            </div>
+            <div>
+              <p>TOTAL</p>
+              <p className="font-bold">
+                {ringgit.format(nextAccount1 + nextAccount2 + nextAccount3)}
+              </p>
             </div>
           </div>
         </div>
