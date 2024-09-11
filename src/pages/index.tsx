@@ -32,6 +32,9 @@ export default function Home() {
           <li className="list-disc list-inside hover:underline">
             <Link href="/epf-flexible">epf flexible ↗</Link>
           </li>
+          <li className="list-disc list-inside hover:underline">
+            <Link href="/csv2json">csv 2 json array ↗</Link>
+          </li>
         </ul>
       </div>
     </main>
